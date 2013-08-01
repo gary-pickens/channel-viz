@@ -16,7 +16,7 @@
  * 
  */
 	var defaultKey      = 'ybwPH9462XIyemXo3ayvPSAzeJlOYlPMZihn1We3dybvRn73', // read only key
-    	defaultFeeds	= ['64451!0!1'], // Comma separated array of Xively Feed ID numbers
+    	defaultFeeds	= ['64451!1'], // Comma separated array of Xively Feed ID numbers
  		applicationName	= 'House Monitor', // Replaces Xively logo in the header
 		dataDuration	= '', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
 		dataInterval	= 60, // Default interval for data to be displayed (in seconds)
