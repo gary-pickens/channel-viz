@@ -33,7 +33,7 @@
             <fileset dir="${current.dir}">
             	<include name="css/*.css"/>
                 <include name="js/*.js"/>
-                <include name="door.js"/>
+                <include name="door-1.js"/>
                 <include name="door.html"/>
             </fileset>
         </scp>

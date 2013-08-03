@@ -11,19 +11,44 @@
 	<script src="js/d3.v2.js"></script>
 	<script type="text/javascript" src="js/date_time.js"></script>
     <script type="text/javascript" src="door-1.js"></script>
-	
+
+<style>
+#date_time 
+{
+    font:caption;
+    position:absolute;
+    right:50px;
+}
+#monitor
+{
+    font:15px arial,sans-serif;
+}
+#status 
+{
+    font:caption;
+    position:absolute;
+    bottom:10px;
+    background-color:lightgray;
+    width=100%;
+}
+</style>
 </head>
 <body>
 
     <div id="date_time"></div>
     <script type="text/javascript">window.onload = date_time('date_time');</script>
 
-    <div id="door">
-    none
-    </div>
-    
-    <script type="text/javascript">window.onload = get_xively_data();</script>
-
-
+    <br><br>
+    <div id="monitor">
+	    <table>
+	    <tr>
+	    <td width="30%">Garage Door</td><td id="door" width="20%"><td><td id="change time"></td>
+	    </tr>
+	    </table>
+	    <script type="text/javascript">window.onload = get_xively_data();</script>
+   </div>
+   <div id="status">
+     House Monitor
+   </div>
 </body>
 </html>

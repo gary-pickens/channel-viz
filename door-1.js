@@ -13,27 +13,29 @@ function get_xively_data()
 		    value = datastream["current_value"]
 		    if (value == 1)
 		    	{
-		    	value = "The door is closed"
+				$("#door").html("<b>Closed</b>");
+			    $("#door").css("color", "red")
 		    	}
 		    else
 		    	{
-		    	value = "The door is open"
+				$("#door").html("<b>Open</b>");
+			    $("#door").css("color", "green")
 		    	}		
-		    	
-		    document.getElementById("door").innerHTML = value;
+  			date_time_2("change time")
 
 		    xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) { 
-			    value = datastream_updated["current_value"] 
-			    if (value == 1)
+				    value = datastream_updated["current_value"] 
+				    if (value == 1)
 			    	{
-			    	value = "The door is closed"
+					$("#door").html("<b>Closed</b>");
+				    $("#door").css("color", "red")
 			    	}
 			    else
 			    	{
-			    	value = "The door is open"
+					$("#door").html("<b>Open</b>");
+				    $("#door").css("color", "green")
 			    	}		
-			    	
-			    document.getElementById("door").innerHTML = value;
+	  			date_time_2("change time")
 		    })
 		})
 	})
