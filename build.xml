@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Home Monitor Web">
+    <property name="version" value="0.0.0" />
+    <property name="project" value="channel-viz" />
+    <property name="remote_directory" value="${project}.${version}" />
+    <property name="host" value="beaglebone" />
+	<property name="author" value="Gary Pickens" />
+    <property name="email" value="gary_pickens@yahoo.com" />
+	<property name="title" value="Web House Monitor and Control"/>
+	<property name="current.dir" value="${basedir}" />
+	<tstamp>
+      <format property="now" pattern="yyyy-MM-dd HH:mm:ss"/>
+    </tstamp>
+
+
+	<import file="${user.home}/imported.xml" />
+<!-- The following two entries need to be added to import.xml with the correct user and password
+	<property name="user" value="" />
+    <property name="password" value="" />
+-->
+	<property name="dir" value="${dir}" />
+	<property name="WebHome" value="/www/pages/hm" />
+
+	<target name="cleanbeaglebone" description="remove the files in ${remote_directory">
+
+        <sshexec host="${host}" username="${user}" password="${password}"
+            command="rm -rf ${WebHome};mkdir ${WebHome}" />
+
+	</target>
+
+	<target name="CopyToBeaglebone" description="copy the files to the beaglebone computer" depends="">
+        <scp todir="${user}:${password}@${host}:${WebHome}" failonerror="true" trust="true">
+            <fileset dir="${current.dir}">
+            	<include name="css/*.css"/>
+                <include name="js/*.js"/>
+                <include name="door.js"/>
+                <include name="door.html"/>
+            </fileset>
+        </scp>
+    </target>
+
+	<target name="dos2unix" description="Fix LF and CR">
+		<fixcrlf srcdir="bin" eol="unix" fixlast="True" />
+        <fixcrlf srcdir="housemonitor" includes="**/*.py"  eol="unix" fixlast="True" />
+	</target>
+</project>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+
+	<meta charset="utf-8" />
+	<title>House Monitor and Control</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script src="js/custom.modernizr.js"></script>
+	<script src="js/xivelyjs-1.0.0.min.js"></script>
+	<script src="js/d3.v2.js"></script>
+	<script type="text/javascript" src="js/date_time.js"></script>
+    <script type="text/javascript" src="door.js"></script>
+	
+</head>
+<body>
+
+    <div id="date_time"></div>
+    <script type="text/javascript">window.onload = date_time('date_time');</script>
+
+    <div id="door">
+    none
+    </div>
+    
+    <script type="text/javascript">window.onload = get_xively_data();</script>
+
+
+</body>
+</html>
