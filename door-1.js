@@ -39,49 +39,46 @@ function get_xively_data()
 			}
 
 		/* Garage door */
-		var datastreamID = 0
 		var garage_count = 0
-		xively.datastream.get(feedID, datastreamID, function(datastream){
+		xively.datastream.get(feedID, 0, function(datastream){
 		    value = datastream["current_value"]
 		    display_door_state(value)
 		    
-		    xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) { 
+		    xively.datastream.subscribe( feedID, 0, function ( event , datastream_updated ) { 
 				    value = datastream_updated["current_value"] 
 				    display_door_state(value)
 				    garage_count = garage_count + 1
-					$("#status").html("Received data packet from garage door sensor  "+garage_count)				    
+					$("#status").html("Received data packet from garage door sensor  "+garage_count+" "+value)				    
 		    })
 		})
 
 		/* Garage temp */
-		var datastreamID = 1
 		var garage_temperature = 0
-		xively.datastream.get(feedID, datastreamID, function(datastream){
+		xively.datastream.get(feedID, 1, function(datastream){
 			var location = "#garage_temp"
 			var time_change = "garage_temp_time_change"
 		    value = datastream["current_value"]
 		    display_temp(value, location, time_change)
 		    
-		    xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) { 
+		    xively.datastream.subscribe( feedID, 1, function ( event , datastream_updated ) { 
 	    		var location = "#garage_temp"
 				var time_change = "garage_temp_time_change"
 			    value = datastream_updated["current_value"] 
 			    display_temp(value, location, time_change)
-	    		garaage_temperature = garage_temperature + 1
-				$("#status").html("Received data packet from Garage  " + garage_temperature)				    
+	    		garage_temperature = garage_temperature + 1
+				$("#status").html("Received data packet from Garage temperature  " + garage_temperature)				    
 		    })
 		})
 
 		/* Sunroom temp */
-		var datastreamID = 2
 		var sunroom_temperature = 0
-		xively.datastream.get(feedID, datastreamID, function(datastream){
+		xively.datastream.get(feedID, 2, function(datastream){
 			var location = "#sunroom_temp"
 			var time_change = "sunroom_temp_time_change"
 		    value = datastream["current_value"]
 		    display_temp(value, location, time_change)
 		    
-		    xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) { 
+		    xively.datastream.subscribe( feedID, 2, function ( event , datastream_updated ) { 
 	    		var location = "#sunroom_temp"
 				var time_change = "sunroom_temp_time_change"
 			    value = datastream_updated["current_value"] 
@@ -92,24 +89,21 @@ function get_xively_data()
 		})
 
 		/* Backroom temp */
-		var datastreamID = 4
-		var backroom_temp = 0
-		xively.datastream.get(feedID, datastreamID, function(datastream){
+		var backroom_temperature = 0
+		xively.datastream.get(feedID, 4, function(datastream){
 		    value = datastream["current_value"]
 			var location = "#backroom_temp"
 			var time_change = "backroom_temp_time_change"
 		    display_temp(value, location, time_change)
 		    
-		    xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) { 
+		    xively.datastream.subscribe( feedID, 4, function ( event , datastream_updated ) { 
 	    		var location = "#backroom_temp"
 				var time_change = "backroom_temp_time_change"
 			    value = datastream_updated["current_value"] 
 			    display_temp(value, location, time_change)
-	    		backroom_temperature = backroom_temperure +1
+	    		backroom_temperature = backroom_temperature +1
 				$("#status").html("Received data packet from Backroom  "+backroom_temperature)				    
 		    })
 		})
-
-
 	})
 }
