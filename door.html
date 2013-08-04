@@ -7,7 +7,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src="js/custom.modernizr.js"></script>
-	<script src="js/xivelyjs-1.0.0.min.js"></script>
+	<script src="js/xivelyjs-1.0.4.min.js"></script>
 	<script src="js/d3.v2.js"></script>
 	<script type="text/javascript" src="js/date_time.js"></script>
     <script type="text/javascript" src="door-1.js"></script>
@@ -46,7 +46,16 @@ body
     <div id="monitor">
 	    <table>
 	    <tr>
-	    <td width="30%">Garage Door</td><td id="door" width="20%"><td><td id="change time"></td>
+        <td width="20%">Garage Door</td><td id="door" width="5%"></td><td id="change time" width="20%"></td>
+        </tr>
+        <tr>
+        <td width="20%">Garage Temperature</td><td id="garage_temp" width="5%"></td><td id="garage_temp_time_change" width="20%"></td>
+        </tr>
+        <tr>
+        <td width="20%">Sunroom Temperature</td><td id="sunroom_temp" width="5%"></td><td id="sunroom_temp_time_change" width="20%"></td>
+        </tr>
+        <tr>
+        <td width="20%">Backroom Temperature</td><td id="backroom_temp" width="5%"></td><td id="backroom_temp_time_change" width="20%"></td>
 	    </tr>
 	    </table>
 	    <script type="text/javascript">window.onload = get_xively_data();</script>
