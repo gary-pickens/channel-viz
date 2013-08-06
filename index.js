@@ -105,5 +105,23 @@ function get_xively_data()
 				$("#status").html("Received data packet from Backroom  "+backroom_temperature)				    
 		    })
 		})
+
+		/* Outdoor temp */
+		var outdoor_temperature = 0
+		xively.datastream.get(feedID, 5, function(datastream){
+		    value = datastream["current_value"]
+			var location = "#outdoor_temp"
+			var time_change = "outdoor_temp_time_change"
+		    display_temp(value, location, time_change)
+		    
+		    xively.datastream.subscribe( feedID, 5, function ( event , datastream_updated ) { 
+	    		var location = "#outdoor_temp"
+				var time_change = "outdoor_temp_time_change"
+			    value = datastream_updated["current_value"] 
+			    display_temp(value, location, time_change)
+	    		outdoor_temperature = outdoor_temperature +1
+				$("#status").html("Received data packet for Outdoor  "+outdoor_temperature)				    
+		    })
+		})
 	})
 }
