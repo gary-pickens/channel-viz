@@ -16,7 +16,7 @@
  * 
  */
 	var defaultKey      = 'ybwPH9462XIyemXo3ayvPSAzeJlOYlPMZihn1We3dybvRn73', // read only key
-    	defaultFeeds	= ['64451!0!1!2!4'], // Comma separated array of Xively Feed ID numbers
+    	defaultFeeds	= ['64451!0!1!2!4!5'], // Comma separated array of Xively Feed ID numbers
  		applicationName	= 'House Monitor', // Replaces Xively logo in the header
 		dataDuration	= '', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
 		dataInterval	= 0, // Default interval for data to be displayed (in seconds)
@@ -117,7 +117,7 @@
 						 			// Build Graph
 									var graph = new Rickshaw.Graph( {
 										element: document.querySelector('#graph-' + feedId + '-' + datastream.id),
-										width: 1000,
+										width: 600,
 										height: 600,
 										renderer: 'line',
 										min: parseFloat(datastream.min_value) - .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
