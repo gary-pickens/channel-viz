@@ -54,7 +54,7 @@ screen_height = $(document).height();
 
 xively.setKey(xivelyKey);
 
-var duration = '1day';
+var duration = '1week';
 var graph_end = moment.utc();
 var graph_start = moment.utc()
 	graph_start.subtract('days', 7)
