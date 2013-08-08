@@ -79,9 +79,8 @@ function drawGraph(series_data, unit) {
 		}
 	});
 
-//	$('#feed-' + feedId + ' .datastreams .datastream-' + datastream.id + ' .slider').prop('id', 'slider-' + feedId + '-' + datastream.id);
-//	var slider = new Rickshaw.Graph.RangeSlider({
-//			graph: graph,
-//			element: $('#slider-' + feedId + '-' + datastream.id)
-//		});
+	var slider = new Rickshaw.Graph.RangeSlider({
+			graph: graph,
+			element: document.querySelector("#slider")
+		});
 }
