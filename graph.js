@@ -1,4 +1,3 @@
-
 xivelyKey = "ybwPH9462XIyemXo3ayvPSAzeJlOYlPMZihn1We3dybvRn73"
 xivelyFeedID = "64451"
 xivelyChannel = "0"
@@ -54,7 +53,7 @@ screen_height = $(document).height();
 
 xively.setKey(xivelyKey);
 
-var duration = '1day';
+var duration = '1week';
 var graph_start = new Date();
  
 var query = {
