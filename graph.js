@@ -55,11 +55,13 @@ screen_height = $(document).height();
 xively.setKey(xivelyKey);
 
 var duration = '1day';
-var graph_start = new Date();
+var graph_end = moment.utc();
+var graph_start = moment.utc()
+	graph_start.subtract('days', 7)
  
 var query = {
-	start: graph_start,
-	duration: duration,
+	start: graph_start.toJSON(),
+	stop: graph_end.toJSON(),
 	interval: 900,
 	limit: 1000
 };
