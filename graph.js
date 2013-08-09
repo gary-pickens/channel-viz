@@ -1,4 +1,3 @@
-
 xivelyKey = "ybwPH9462XIyemXo3ayvPSAzeJlOYlPMZihn1We3dybvRn73"
 xivelyFeedID = "64451"
 xivelyChannel = "0"
@@ -22,7 +21,7 @@ if ("0" == xivelyChannel) {
 	max = 130
 	units = 'F'
 } else if ("4" == xivelyChannel) {
-	$("#Sensor").html("Ketchen Temperature")
+	$("#Sensor").html("Kitchen Temperature")
 	min = 75
 	max = 95
 	units = 'F'
