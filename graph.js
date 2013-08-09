@@ -49,15 +49,16 @@ function GetURLParameter(sParam)
 
 
 screen_width = $(document).width();
-screen_width = 600;
 screen_height = $(document).height();
+
+graph_width = 500;
+graph_height = 300;
 
 xively.setKey(xivelyKey);
 
-var duration = '1week';
 var graph_end = moment.utc();
 var graph_start = moment.utc()
-	graph_start.subtract('days', 7)
+	graph_start.subtract('hours', 6)
  
 var query = {
 	start: graph_start.toJSON(),
@@ -66,6 +67,62 @@ var query = {
 	limit: 1000
 };
 
+$("#current").click(function(){
+	var graph_end = moment.utc();
+	var graph_start = moment.utc();
+
+	graph_start.subtract('hours', 5);
+	query.end = graph_start.toJSON();
+	query.start = graph_start.toJSON();
+	query.start = graph_start.toJSON();
+	query.end = graph_end.toJSON();
+
+	query.interval = 30;
+	$("#status").html("#current " + graph_start.format("dddd, MMMM Do YYYY, h:mm:ss a") + " -- " + graph_end.format("dddd, MMMM Do YYYY, h:mm:ss a"));
+	$("#graph").empty();
+	xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
+})
+
+$("#today").click(function(){
+	var graph_end = moment.utc().endOf('day');
+	var graph_start = moment.utc().startOf('day');
+
+	query.end = graph_end.toJSON();
+	query.start = graph_start.toJSON();
+	query.interval = 60;
+
+	$("#status").html("#today " + graph_start.format("dddd, MMMM Do YYYY, h:mm:ss a") + " -- " + graph_end.format("dddd, MMMM Do YYYY, h:mm:ss a"));
+	$("#graph").empty();
+	xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
+})
+
+$("#week").click(function(){
+	var graph_end = moment.utc();
+	var graph_start = moment.utc();
+	graph_start.subtract('weeks', 1);
+	query.end = graph_end.toJSON();
+	query.start = graph_start.toJSON();
+	query.interval = 900;
+//	$("#status").html("#week " + graph_start.format("dddd, MMMM Do YYYY, h:mm:ss a") + " -- " + graph_end.format("dddd, MMMM Do YYYY, h:mm:ss a"));
+	$("#graph").empty();
+
+	xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
+})
+
+
+$("#month").click(function(){
+	var graph_end = moment.utc();
+	var graph_start = moment.utc();
+
+	graph_start.subtract('months', 1);
+	query.end = graph_end.toJSON();
+	query.start = graph_start.toJSON();
+	query.interval = 3600;
+	$("#graph").empty();
+
+//	$("#status").html("month " + query.start.format("dddd, MMMM Do YYYY, h:mm:ss a) + " -- " + query.end.format("dddd, MMMM Do YYYY, h:mm:ss a));
+	xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
+})
 
 xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
  
@@ -74,7 +131,9 @@ function loadData(data) {
 	var series = [];
 	var filtedData = data.datapoints.filter(function(x) { return (x.value < 1000); });
 	for (var i=0; i < filtedData.length; i++ ) {
-		var date = moment(filtedData[i].at);
+		var utc = moment.utc(filtedData[i].at);
+		utc.local()
+		var date = utc
 		var value = parseInt(filtedData[i].value);
 		series[i] = {x: date.unix(), y: value};
 	}
@@ -85,7 +144,7 @@ function drawGraph(series_data, unit) {
 	// Build Graph
 	var graph = new Rickshaw.Graph( {
 		element: document.querySelector("#graph"),
-		width: screen_width,
+		width: 600,
 		height: 400,
 		renderer: 'line',
 		min: min,
@@ -128,6 +187,7 @@ function drawGraph(series_data, unit) {
 		}
 	});
 
+//	$("#slider").css("width: " + graph_width + "px");
 	var slider = new Rickshaw.Graph.RangeSlider({
 			graph: graph,
 			element: document.querySelector("#slider")
