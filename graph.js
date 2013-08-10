@@ -77,7 +77,6 @@ $("#current").click(function(){
 	query.end = graph_end.toJSON();
 
 	query.interval = 30;
-	$("#status").html("#current " + graph_start.format("dddd, MMMM Do YYYY, h:mm:ss a") + " -- " + graph_end.format("dddd, MMMM Do YYYY, h:mm:ss a"));
 	$("#graph").empty();
 	xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
 })
@@ -90,7 +89,6 @@ $("#today").click(function(){
 	query.start = graph_start.toJSON();
 	query.interval = 60;
 
-	$("#status").html("#today " + graph_start.format("dddd, MMMM Do YYYY, h:mm:ss a") + " -- " + graph_end.format("dddd, MMMM Do YYYY, h:mm:ss a"));
 	$("#graph").empty();
 	xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
 })
@@ -102,7 +100,6 @@ $("#week").click(function(){
 	query.end = graph_end.toJSON();
 	query.start = graph_start.toJSON();
 	query.interval = 900;
-//	$("#status").html("#week " + graph_start.format("dddd, MMMM Do YYYY, h:mm:ss a") + " -- " + graph_end.format("dddd, MMMM Do YYYY, h:mm:ss a"));
 	$("#graph").empty();
 
 	xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
@@ -116,10 +113,9 @@ $("#month").click(function(){
 	graph_start.subtract('months', 1);
 	query.end = graph_end.toJSON();
 	query.start = graph_start.toJSON();
-	query.interval = 3600;
+	query.interval = 3600; // from: 
 	$("#graph").empty();
 
-//	$("#status").html("month " + query.start.format("dddd, MMMM Do YYYY, h:mm:ss a) + " -- " + query.end.format("dddd, MMMM Do YYYY, h:mm:ss a));
 	xively.datastream.history( xivelyFeedID, xivelyChannel, query, loadData);
 })
 
