@@ -129,7 +129,7 @@ function loadData(data) {
 	for (var i=0; i < filtedData.length; i++ ) {
 		var utc = moment.utc(filtedData[i].at);
 		utc.local()
-		var date = utc.local()
+		var date = utc.substact('hours', 6)
 		var value = parseInt(filtedData[i].value);
 		series[i] = {x: date.unix(), y: value};
 	}
