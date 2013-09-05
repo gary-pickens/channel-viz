@@ -131,7 +131,7 @@ function loadData(data) {
 		utc.local()
 		var date = utc.local()
 		var value = parseInt(filtedData[i].value);
-		series[i] = {x: date, y: value};
+		series[i] = {x: date.unix(), y: value};
 	}
 	drawGraph(series, unit);
 }
