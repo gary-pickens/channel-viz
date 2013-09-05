@@ -82,9 +82,10 @@ $("#current").click(function(){
 })
 
 $("#today").click(function(){
-	var graph_end = moment.utc().endOf('day');
-	var graph_start = moment.utc().startOf('day');
+	var graph_end = moment.utc();
+	var graph_start = moment.utc();
 
+	graph_start.subtract('hours', 24);
 	query.end = graph_end.toJSON();
 	query.start = graph_start.toJSON();
 	query.interval = 60;
