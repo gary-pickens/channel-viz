@@ -88,7 +88,7 @@ function get_xively_data()
 		    })
 		})
 
-		/* Backroom temp */
+		/* Kitchen temp */
 		var kitchen_temperature = 0
 		xively.datastream.get(feedID, 4, function(datastream){
 		    value = datastream["current_value"]
@@ -98,9 +98,9 @@ function get_xively_data()
 		    
 		    xively.datastream.subscribe( feedID, 4, function ( event , datastream_updated ) { 
 	    		var location = "#kitchen_temp"
-				var time_change = "kitchen_temp_time_change"
-			    value = datastream_updated["current_value"] 
-			    display_temp(value, location, time_change)
+			var time_change = "kitchen_temp_time_change"
+		        value = datastream_updated["current_value"] 
+		        display_temp(value, location, time_change)
 	    		kitchen_temperature = kitchen_temperature +1
 				$("#status").html("Received data packet from Kitchen  "+kitchen_temperature)				    
 		    })
