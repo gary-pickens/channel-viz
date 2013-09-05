@@ -128,10 +128,9 @@ function loadData(data) {
 	var filtedData = data.datapoints.filter(function(x) { return (x.value < 1000); });
 	for (var i=0; i < filtedData.length; i++ ) {
 		var utc = moment.utc(filtedData[i].at);
-		utc.local()
-		var date = utc.local()
+		var date = utc.subtract("hours", 6)
 		var value = parseInt(filtedData[i].value);
-		series[i] = {x: date.unix(), y: value};
+		series[i] = {x: date.valueOf()/1000, y: value};
 	}
 	drawGraph(series, unit);
 }
