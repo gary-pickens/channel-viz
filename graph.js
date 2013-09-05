@@ -73,8 +73,6 @@ $("#current").click(function(){
 	graph_start.subtract('hours', 5);
 	query.end = graph_start.toJSON();
 	query.start = graph_start.toJSON();
-	query.start = graph_start.toJSON();
-	query.end = graph_end.toJSON();
 
 	query.interval = 30;
 	$("#graph").empty();
@@ -128,10 +126,9 @@ function loadData(data) {
 	var filtedData = data.datapoints.filter(function(x) { return (x.value < 1000); });
 	for (var i=0; i < filtedData.length; i++ ) {
 		var utc = moment.utc(filtedData[i].at);
-		utc.local()
-		var date = utc.local()
+		var date = utc.subtract("hours", 6)
 		var value = parseInt(filtedData[i].value);
-		series[i] = {x: date.unix(), y: value};
+		series[i] = {x: date.valueOf()/1000, y: value};
 	}
 	drawGraph(series, unit);
 }
@@ -153,16 +150,16 @@ function drawGraph(series_data, unit) {
 		},
 	    series:  [{
 			data:  series_data,
-					color: 'steelblue'
-				}]
+			color: 'steelblue'
+		}]
 
 	});
 	graph.render();
 
 	var ticksTreatment = 'glow';
 	var xAxis = new Rickshaw.Graph.Axis.Time( {
-		graph: graph,
-		ticksTreatment: ticksTreatment
+	    graph: graph,
+	    ticksTreatment: ticksTreatment
 	});
 	xAxis.render();
 
@@ -178,7 +175,7 @@ function drawGraph(series_data, unit) {
 		graph: graph,
 		formatter: function(series_data, x, y) {
 			var swatch = '<span class="detail_swatch" style="background-color: ' + series_data.color + ' padding: 4px;"></span>';
-			var content = swatch + "&nbsp;&nbsp;" + parseFloat(y) + '&nbsp;&nbsp;<br>';
+			var content = swatch + "&nbsp;&nbsp;" + y + '&nbsp;&nbsp;<br>';
 			return content;
 		}
 	});
